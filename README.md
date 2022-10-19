@@ -23,6 +23,15 @@ python /data/guoshoutao/PED-SiMT/fairseq/train.py /data/guoshoutao/wmt15_de_en_b
 --dropout 0.3
 
 generate.sh
+
 k = 5
+
 a = 0.24
-python /data/guoshoutao/PED-SiMT/fairseq/generate.py /data/guoshoutao/wmt15_de_en_bpe32k --path checkpoint_best.pt --batch-size 1 --beam 1 --remove-bpe --gen-subset test --left-pad-source False --left-pad-target False --latency &k --threshold $a
+
+python /data/guoshoutao/PED-SiMT/fairseq/generate.py /data/guoshoutao/wmt15_de_en_bpe32k \
+--path checkpoint_best.pt \
+--batch-size 1 --beam 1 \
+--remove-bpe --gen-subset test \
+--left-pad-source False \
+--left-pad-target False \
+--latency &k --threshold $a
