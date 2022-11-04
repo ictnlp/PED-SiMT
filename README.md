@@ -95,7 +95,7 @@ threshold=PREDEFINED_PARAMETER
 python scripts/average_checkpoints.py --inputs ${modelfile} --num-update-checkpoints 5 --output ${modelfile}/average-model.pt 
 
 # generate translation
-python generate.py ${data} --path $modelfile/average-model.pt --batch-size 1 --beam 1 --left-pad-source False --remove-bpe --gen-subset test --sim-decoding --latency &{k} --threshold ${threshold} > pred.out
+python generate.py ${data} --path $modelfile/average-model.pt --batch-size 1 --beam 1 --left-pad-source False --remove-bpe --gen-subset test --latency ${k} --threshold ${threshold} > pred.out
 
 grep ^H pred.out | cut -f1,3- | cut -c3- | sort -k1n | cut -f2- > pred.translation
 multi-bleu.perl -lc ${ref_dir} < pred.translation
